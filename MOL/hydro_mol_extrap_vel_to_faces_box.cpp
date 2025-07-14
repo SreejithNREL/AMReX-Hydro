@@ -68,7 +68,10 @@ MOL::ExtrapVelToFacesBox (  AMREX_D_DECL( Box const& ubx,
     if ((has_extdir_or_ho_lo && domain_ilo >= ubx.smallEnd(0)-1) ||
         (has_extdir_or_ho_hi && domain_ihi <= ubx.bigEnd(0)))
     {
-        amrex::ParallelFor(ubx, [vcc,domain_ilo,domain_ihi,u,d_bcrec,allow_inflow_on_outflow]
+      amrex::ParallelFor(
+        ubx,
+        [order, average_not_upwind, vcc, domain_ilo, domain_ihi, u, d_bcrec,
+         allow_inflow_on_outflow]
         AMREX_GPU_DEVICE (int i, int j, int k) noexcept
         {
             bool extdir_or_ho_ilo = (d_bcrec[0].lo(0) == BCType::ext_dir) ||
@@ -129,7 +132,10 @@ MOL::ExtrapVelToFacesBox (  AMREX_D_DECL( Box const& ubx,
     }
     else
     {
-        amrex::ParallelFor(ubx, [vcc,domain_ilo,domain_ihi,u,d_bcrec,allow_inflow_on_outflow]
+      amrex::ParallelFor(
+        ubx,
+        [order, average_not_upwind, vcc, domain_ilo, domain_ihi, u, d_bcrec,
+         allow_inflow_on_outflow]
         AMREX_GPU_DEVICE (int i, int j, int k) noexcept
         {
             constexpr int     n = 0;
@@ -182,7 +188,10 @@ MOL::ExtrapVelToFacesBox (  AMREX_D_DECL( Box const& ubx,
     if ((has_extdir_or_ho_lo && domain_jlo >= vbx.smallEnd(1)-1) ||
         (has_extdir_or_ho_hi && domain_jhi <= vbx.bigEnd(1)))
     {
-        amrex::ParallelFor(vbx, [vcc,domain_jlo,domain_jhi,v,d_bcrec,allow_inflow_on_outflow]
+      amrex::ParallelFor(
+        vbx,
+        [order, average_not_upwind, vcc, domain_jlo, domain_jhi, v, d_bcrec,
+         allow_inflow_on_outflow]
         AMREX_GPU_DEVICE (int i, int j, int k) noexcept
         {
             bool extdir_or_ho_jlo = (d_bcrec[1].lo(1) == BCType::ext_dir) ||
@@ -242,7 +251,10 @@ MOL::ExtrapVelToFacesBox (  AMREX_D_DECL( Box const& ubx,
     }
     else
     {
-        amrex::ParallelFor(vbx, [vcc,domain_jlo,domain_jhi,v,d_bcrec,allow_inflow_on_outflow]
+      amrex::ParallelFor(
+        vbx,
+        [order, average_not_upwind, vcc, domain_jlo, domain_jhi, v, d_bcrec,
+         allow_inflow_on_outflow]
         AMREX_GPU_DEVICE (int i, int j, int k) noexcept
         {
             constexpr int     n = 1;
@@ -295,7 +307,10 @@ MOL::ExtrapVelToFacesBox (  AMREX_D_DECL( Box const& ubx,
     if ((has_extdir_or_ho_lo && domain_klo >= wbx.smallEnd(2)-1) ||
         (has_extdir_or_ho_hi && domain_khi <= wbx.bigEnd(2)))
     {
-        amrex::ParallelFor(wbx, [vcc,domain_klo,domain_khi,w,d_bcrec,allow_inflow_on_outflow]
+      amrex::ParallelFor(
+        wbx,
+        [order, average_not_upwind, vcc, domain_klo, domain_khi, w, d_bcrec,
+         allow_inflow_on_outflow]
         AMREX_GPU_DEVICE (int i, int j, int k) noexcept
         {
             bool extdir_or_ho_klo = (d_bcrec[2].lo(2) == BCType::ext_dir) ||
@@ -355,7 +370,10 @@ MOL::ExtrapVelToFacesBox (  AMREX_D_DECL( Box const& ubx,
     }
     else
     {
-        amrex::ParallelFor(wbx, [vcc,domain_klo,domain_khi,w,d_bcrec,allow_inflow_on_outflow]
+      amrex::ParallelFor(
+        wbx,
+        [order, average_not_upwind, vcc, domain_klo, domain_khi, w, d_bcrec,
+         allow_inflow_on_outflow]
         AMREX_GPU_DEVICE (int i, int j, int k) noexcept
         {
             constexpr int     n = 2;
